@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import rhino3dm from 'rhino3dm'
 
 const file = 'bigfoot.3dm'
+
 let scene, camera, renderer
 
 // wait until the rhino3dm library is loaded, then load the 3dm file
@@ -16,15 +17,15 @@ let arr = new Uint8Array(buffer)
 let doc = rhino.File3dm.fromByteArray(arr)
 
 init()
+let material = new THREE.MeshStandardMaterial({
+    color: 0x040cf6,
+    emissive: 0x000000,
+    
+    metalness: 1,
+    roughness: 0,
+  });
 
-const material = new THREE.MeshStandardMaterial({
-  color: 0xfcc742,
-  emissive: 0x111111,
-  specular: 0xffffff,
-  metalness: 1,
-  roughness: 0.55,
-});
-
+// let material = new THREE.MeshNormalMaterial ()
 
 let objects = doc.objects()
 for (let i = 0; i < objects.count; i++) {
@@ -47,6 +48,22 @@ function init(){
     scene.background = new THREE.Color(1,1,1)
     camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 1, 1000 )
     camera.position.set(0,-100,5)
+
+    var light = new THREE.DirectionalLight( 0xffffff, 1000);
+    light.position.set( 0, -1, 1 ).normalize();
+    scene.add(light);
+
+    // const color = 0xFFFFFF;
+    // const intensity = 10000;
+    // var light = new THREE.AmbientLight(color, intensity);
+    // scene.add(light);
+
+    // var light = new THREE.AmbientLight(0xffffff, 10000); // 设置一个白色环境光
+    // scene.add(light);
+
+    // const frontSpot = new THREE.SpotLight(0xeeeece, 10000000);
+    // frontSpot.position.set(0, -100, 0);
+    // scene.add(frontSpot);
 
     renderer = new THREE.WebGLRenderer({antialias: true})
     renderer.setPixelRatio( window.devicePixelRatio )
@@ -72,6 +89,7 @@ function onWindowResize() {
 }
 
 function meshToThreejs(mesh, material) {
+    
     const loader = new THREE.BufferGeometryLoader()
     const geometry = loader.parse(mesh.toThreejsJSON())
     return new THREE.Mesh(geometry, material)
