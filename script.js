@@ -17,7 +17,14 @@ let doc = rhino.File3dm.fromByteArray(arr)
 
 init()
 
-let material = new THREE.MeshNormalMaterial()
+const material = new THREE.MeshStandardMaterial({
+  color: 0xfcc742,
+  emissive: 0x111111,
+  specular: 0xffffff,
+  metalness: 1,
+  roughness: 0.55,
+});
+
 
 let objects = doc.objects()
 for (let i = 0; i < objects.count; i++) {
