@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import rhino3dm from 'rhino3dm'
 
-const file = 'hello_mesh.3dm'
+const file = 'bigfoot.3dm'
 let scene, camera, renderer
 
 // wait until the rhino3dm library is loaded, then load the 3dm file
