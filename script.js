@@ -38,7 +38,7 @@ function init(){
 
     scene = new THREE.Scene()
     scene.background = new THREE.Color(1,1,1)
-    camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 1, 1000 )
+    camera = new THREE.PerspectiveCamera( 0, window.innerWidth/window.innerHeight, 1, 1000 )
     camera.position.set(0,-45,5)
 
     renderer = new THREE.WebGLRenderer({antialias: true})
