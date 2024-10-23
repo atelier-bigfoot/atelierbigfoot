@@ -5,7 +5,7 @@ import rhino3dm from 'rhino3dm'
 
 const file = 'bigfoot.3dm'
 let scene, camera, renderer
-
+let rotation = 0.001
 // wait until the rhino3dm library is loaded, then load the 3dm file
 const rhino = await rhino3dm()
 console.log('Loaded rhino3dm.')
