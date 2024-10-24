@@ -1,0 +1,44 @@
+html {
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+
+
+  
+  
+body{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  /* border: 10px solid #fff; */
+  align-content: center;
+  align-self: center;
+  display:flex;
+  margin:0;
+
+}
+  
+h1 {
+  font-family: Space Grotesk ;
+  font-size: 10em;
+}
+
+h2{
+  font-family: Space Grotesk ;
+  font-size: 5em;
+}
+
+.title { 
+  position: fixed;
+  z-index: 1000;
+  /* border: 1px solid #000000; */
+  color: blue;
+ line-height: 0;
+}  
+  
+.viewer { 
+  z-index: 1;
+  /* border: 3em black; */
+  
+}
