@@ -93,6 +93,16 @@
       height 0.15s ease-out, background-color 0.15s ease-out;
     z-index: 999;
   }
+  @media screen and (max-width:749px) {
+    #cursor {
+      display: none;
+    }
+
+    #cursor-border {
+      display: none;
+    }
+
+  }
   
 
   /* --CURSOR */
@@ -331,8 +341,12 @@
   
   
     .header .logo text {
-      font-size: 2em;
+      font-size: 1.5em;
       margin-left: 1em;
+    }
+
+    .header .socials{
+      display:none;
     }
   
   
@@ -432,7 +446,7 @@ footer {
     color: var(--color-body);
     text-align: center;
     font-size: 1.4rem;
-    border-top: 3px solid var(--color-body);
+    /* border-top: 3px solid var(--color-body); */
     position: sticky;
     bottom: 0;
     
@@ -501,7 +515,18 @@ footer {
     }
   }
   
+
+
+  @media screen and (max-width:749px) {
+    footer {
+      text-align: left;
+      /* height: 0; */
+      display: none;
+    }
   
+  
+
+  }
   
   
   
