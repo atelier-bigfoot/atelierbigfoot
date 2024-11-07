@@ -1,5 +1,5 @@
 
-var scene3d = document.getElementById("viewer");
+var scene3d = document.getElementById("canvas");
 
 
 // Import libraries

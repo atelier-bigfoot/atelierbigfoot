@@ -1,0 +1,263 @@
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>projets</title>
+
+  <meta name="description" content="Portfolio des projets">
+  <link rel="shortcut icon" href="./img/favicon.svg?v=1" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./css/stylesheet.css">
+<link rel="stylesheet" href="./css/index.css">
+<script src="./js/Menu.js" defer></script>
+<script src="./js/cursor.js" defer></script>
+</head>
+
+<div id="cursor"></div>
+<div id="cursor-border"></div>
+
+
+<body>
+
+  <header class="header">
+    <div class="d-flex">
+      
+      <div class="logo">
+        
+        <a href="" data-cursor="pointer"><text>Atelier Bigfoot</text></a>
+      </div>
+      
+      <nav class="navbar ">
+        <ul class="menu list-unstyled">
+          
+          <li><a href="./Portfolio.html" data-cursor="pointer">Portfolio</a></li>
+          <li><a href="#contact" data-cursor="pointer">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="right">
+        <ul class="socials list-unstyled">
+         
+          <li>
+            <a href="https://www.instagram.com/atelier_bigfoot/" data-cursor="pointer">
+              <svg aria-hidden="true" class="icon insta" focusable="false" data-prefix="fab" data-icon="instagram"
+                class="svg-inline--fa fa-instagram fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <path fill="currentColor"
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                </path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <button class="burger"><span class="bar"></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="projet_title">
+    
+      <div class=text_wrapper>
+        <h1>Atelier Bigfoot</h1>
+        <span>creative studio</span>
+      </div>
+      <a href="#fiche_projet"  class="down" data-cursor="pointer"> 
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 96 120" enable-background="new 0 0 96 96" xml:space="preserve" fill="currentColor"><path d="M48.004,64c-0.66,0-1.32-0.172-1.916-0.492l-44-24c-1.94-1.06-2.656-3.488-1.596-5.424c1.06-1.936,3.488-2.652,5.424-1.596  L48,55.443l42.084-22.956c1.932-1.056,4.368-0.34,5.42,1.596c1.064,1.94,0.344,4.368-1.592,5.424l-44,24  C49.324,63.828,48.668,64,48.004,64z"/>
+        </svg>
+      </a>
+    
+  </section>
+
+
+  <section class="canvas" id="canvas">
+    <option for="file-select" id="file-select" value="./projet/bigfoot.3dm"></option>
+    <!-- https://github.com/atelier-bigfoot/atelierbigfoot/blob/main/bigfoot.3dm -->
+        
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+                    "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.158.0/examples/jsm/controls/OrbitControls.js",
+                    "three/examples/jsm/loaders/3DMLoader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/3DMLoader.js"                }
+            }
+        </script>
+        
+        <script type="module" src="../js/3Dviewer.js"></script>
+
+  </section>
+
+  <section class="fiche_projet" id="fiche_projet">
+
+
+
+    <div class="grid__item">
+          
+      <div class="modal">
+        
+        <div class="modal__content">
+
+
+
+          <div class="modal__content">
+          
+          
+            <div class="container">
+              <div class="wrapper">
+          
+                <div class="a">
+                  <h1 class="title">Projet 12<br /><br />SPEED FESTIVAL 2023<br />Cholet(49)</h1>
+                </div>
+                <div class="b line"><strong>
+                    <ul>
+                      <li>The Bauhaus</li>
+                      <li>Swiss Modernism</li>
+                      <li>Swiss Graphic Deisgn</li>
+                      <li>The International Typographic Style</li>
+                      <li>Russioan Constructivism</li>
+                      <li>Typography</li>
+                      <li>Illustration</li>
+                    </ul>
+                  </strong>
+                </div>
+          
+                <div class="c line">
+                  <p>The Bauhaus 1919-1933</p>
+                  <img src="https://unsplash.com/photos/PDX_a_82obo/download?force=true&w=640" loading="lazy"  class="card__image"  alt="" />
+                  <!-- <img src="https://unsplash.com/photos/PDX_a_82obo/download?force=true&w=640" loading="lazy"  class="card__image"  alt="" /> -->
+                </div>
+          
+          
+          
+                <div class="d line">
+                  <p>The International<br />Typogrgraphic<br />Style <br /> The Swiss<br />Style</p>
+                </div>
+          
+                <div class="e line">
+                  <p>Swiss Graphic Design /<br />Modernism</p>
+                </div>
+          
+                <div class="f line">
+                  <p>Les prémices de cet exercice est une étude de cas : La ville d’Anvers (Antwerpen) située dans la partie
+                    flamande de la
+                    Belgique. 2 thématiques générales ont été tirées au sort pour mener cette étude: «géographie» et «comestible».
+                    Ainsi,
+                    par groupe de 9 étudiants, nous devions produire un atlas de recherche sur la situation alimentaire de la
+                    ville.</p>
+          
+                  <p>Production, importation, exportation, traditions culinaires et mixités culturelles. tels sont les axes
+                    majeurs qui nous
+                    ont permis de soulever des problématiques urbaines. Comme la disparition des centres de productions de la
+                    ville pour une
+                    relégation de ces espaces en périphérie de celle-ci. Ou bien le rapport à l’eau, à la pêche qui à complétement
+                    évolué
+                    avec l’expansion de la ville et de son port. (l’un des premiers d’europe et le 13ème port mondial en termes
+                    d’échanges).</p>
+                </div>
+          
+                <div class="g line">
+                  <p>Cette étude fut donc marquée par un relevé précis de tous les sites de productions ( fermes urbaines,
+                    abattoirs, zones
+                    de pêches, usines agro-alimentaires), de stockages (hangars et centre de distributions) de commercialisation
+                    (marchés,
+                    grossistes). Mais aussi de l’histoire alimentaire de la ville qui s’est diversifié est enrichie par son
+                    ouverture sur le
+                    monde. Depuis le 16ème siècle, comme l’ont si bien rapporté les peintres flamands, on peut prendre en note
+                    l’importation
+                    de la pomme de terre, du cacao et du café qui font aujourd’hui pleinement partie des habitudes alimentaires
+                    Anversoise.
+                    Des traditions comme les «mains d’Anvers» (dont le nom est en partie tiré du passé exclavagiste du territoire)
+                    qui
+                    rayonnent à l’étranger.</p>
+                </div>
+          
+                <div class="h line">
+                  <p>Ce voyage nous à notament révélé un site avec un grand potentiel: Les quais anversois. Victime de
+                    l’augmentation du
+                    niveau de l’escaut, la ville d’Antwerp à pour projets la construction/agrandissement d’un mur anti-inondation
+                    situé le
+                    long des quais (Plan SIGMA). Ce projet prévoit donc un mur de 2,25 m de haut construit sur une dizaine
+                    d’années
+                    (construction commencée en 2017 et fin des travaux prévus en 2030). Nos intention était donc à travers nos
+                    projets de
+                    proposer une utilisation temporaire du site dans une dynamique d’urbanisme transitoire pouvant révéler des
+                    usages futur
+                    des sites par son éprouvement. Long de 3,5 km, les quais servent depuis plus de 50 ans de parkings. L’enjeu
+                    était aussi
+                    de raviver le site et de créer des dynamiques entre les deux rives. De recoudre le tissu urbain en proposant
+                    des
+                    programmes ponctuels répondant au besoin spécifique du quartier. Notre intention fut donc d’amener les
+                    habitants à
+                    s’ancrer sur les lieux avec des utilisations concrètes qui formalisent les usages déjà présents sur le site
+                    (occupation
+                    informelle des jeunes...). Ansin notre intention c’est portée sur des espace de repos, de rencontres mais
+                    aussi des
+                    lieux de divertissements:</p>
+          
+                  <p>Ainsi le projet d’une guinguette festive qui agrémentera les quais nous parut une proposition justifiée</p>
+          
+                  <p>Au niveau principal de cette guinguette, un plancher en semi transparence partiellement en caillebotis,
+                    offrant une
+                    certaine porosité entre un espace semi privé (la guinguette) et l’espace public de circulations au sol. Lors
+                    d’inondations, la guinguette offrira toujours un usage, mais articulé d’une nouvelle manière autour du patio
+                    central
+                    devenu bassin.</p>
+                </div>
+          
+          
+              </div><!-- // wrapper -->
+          
+              
+             </div>
+          </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  </section>
+
+
+
+  <footer>
+    <div>
+      <div class="grid">
+        <div class="grid__item">
+          <p>atelierbigfoot[at]gmail.com</p>
+        </div>
+        
+        <div class="grid__item">
+          <ul class="socials list-unstyled">
+           
+            <li>
+              <a href="https://www.instagram.com/atelier_bigfoot/" data-cursor="pointer">
+                <svg aria-hidden="true" class="icon insta" focusable="false" data-prefix="fab" data-icon="instagram"
+                  class="svg-inline--fa fa-instagram fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512">
+                  <path fill="currentColor"
+                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                  </path>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="grid__item">
+          <p>Copyright © 2022 Atelier Bigfoot. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+ 
+</body>
+</html>

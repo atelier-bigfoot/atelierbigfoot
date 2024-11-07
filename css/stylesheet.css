@@ -5,12 +5,6 @@
     --background-body: #F5F5F5;
     --background-darker-body: #e5e5df;
     --background-indesign-body: #f4ede7;
-    --bg-img: url(https://tylergaw.com/images/noise-tile-light.svg);
-    --gradient: linear-gradient(45deg, #e66465, #9198e5, #37ae9c, #4c826b);
-    --gradient2: radial-gradient(closest-side, #e85914, #F5f5f5), url(https://grainy-gradients.vercel.app/noise.svg);
-  
-    --gradient3: linear-gradient(45deg, #e66465, #9198e500, #37ae9c, #f5f5f500), url(https://grainy-gradients.vercel.app/noise.svg);
-  
     --background-dark: #2d3548;
     --text-light: rgba(255, 255, 255, 0.6);
     --text-lighter: rgba(255, 255, 255, 0.9);
@@ -163,6 +157,7 @@
   
   
   a {
+    color:var(--background-body);
     text-decoration: none;
     transition: all 0.5s ease-out;
   }
@@ -170,7 +165,7 @@
   
   
   a:hover {
-    color: #e85914;
+    color: #006eff;
   }
   
   
@@ -210,7 +205,7 @@
     color: var(--background-body);
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 9;
     transition: all .5s ease-in-out;
   }
   
