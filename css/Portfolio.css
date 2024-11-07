@@ -1,0 +1,364 @@
+/* Base */
+
+:root {
+  --color-body: #333333;
+  --background-body: #F5F5F5;
+  --background-darker-body: #e5e5df;
+  --background-indesign-body: #f4ede7;
+  --bg-img: url(https://tylergaw.com/images/noise-tile-light.svg);
+  --gradient: linear-gradient(45deg, #e66465, #9198e5, #37ae9c, #4c826b);
+  --gradient2: radial-gradient(closest-side, #e85914, #F5f5f5), url(https://grainy-gradients.vercel.app/noise.svg);
+
+  --gradient3: linear-gradient(45deg, #e66465, #9198e500, #37ae9c, #f5f5f500), url(https://grainy-gradients.vercel.app/noise.svg);
+
+  --background-dark: #2d3548;
+  --text-light: rgba(255, 255, 255, 0.6);
+  --text-lighter: rgba(255, 255, 255, 0.9);
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 64px;
+  --width-container: 1200px;
+
+}
+
+
+
+/* PORTFOLIO */
+
+.container {
+  padding: 1rem 2rem;
+  background-color: var(--background-indesign-body);
+  border-radius: 50px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.grid__item {
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 100%;
+  padding: 1rem;
+}
+
+
+
+
+
+
+.dropdown {
+  padding: 0;
+  --varpaddingfilter: 0.1em;
+  --varheightfilter: 3em;
+  --varwidthfilter: 15em;
+  list-style-type: none;
+  display: block;
+  height: auto;
+  position: sticky;
+  z-index: 2;
+  top: 10vh;
+
+}
+
+.dropdown li {
+  height: var(--varheightfilter);
+  width: var(--varwidthfilter);
+  visibility: hidden;
+  position: relative;
+  z-index: 0;
+  margin: auto;
+  padding: var(--varpaddingfilter);
+
+}
+
+.dropdown li a {
+
+
+  line-height: 2.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-body);
+  text-transform: uppercase;
+  background: #FFF;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  justify-content: space-evenly;
+  transition: 500ms;
+}
+
+.dropdown li:nth-child(2) a {
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--varheightfilter)));
+
+
+}
+
+.dropdown li:nth-child(3) a {
+  opacity: 0;
+  transform: translateY(calc(-2 * var(--varheightfilter)));
+
+
+}
+
+.dropdown li:nth-child(4) a {
+  opacity: 0;
+  transform: translateY(calc(-3 * var(--varheightfilter)));
+
+
+}
+
+.dropdown li a:active {
+  font-size: 0.8em;
+  background-color: var(--color-body);
+
+}
+
+
+.dropdown li a.active {
+  visibility: visible;
+  z-index: 4;
+  opacity: 1;
+}
+
+.dropdown li:first-of-type {
+  visibility: visible;
+
+  transition: background-color 200ms;
+}
+
+.dropdown:hover li {
+  visibility: visible;
+
+}
+
+.dropdown:hover li a {
+
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+
+
+.dropdown li:hover a {
+  background-color: var(--color-body);
+  color: var(--background-body);
+}
+
+
+.portfolio .grid__item {
+  opacity: 1;
+  transition: all 1s ease;
+
+}
+
+
+.portfolio .grid__item.hide {
+  opacity: 0;
+  max-width: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: all .4s ease;
+
+}
+
+
+.filter-border {
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+
+}
+
+.a-border {
+
+
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+
+  border: 3px solid #F5F5F5;
+
+  overflow: hidden;
+  border-radius: 100px;
+  box-shadow: 0 0 15px #000;
+}
+
+
+
+.dropdown a.active {
+  color: #FFF;
+  background: #006eff;
+
+}
+
+
+.filter-border svg {
+  visibility: hidden;
+  margin-left: 10px;
+  height: 100%;
+
+}
+
+
+
+.filter-border .active svg {
+  visibility: inherit;
+
+}
+
+.portfolio .projets .container {
+  background-color: #000;
+
+}
+
+
+
+.card {
+  list-style: none;
+  position: relative;
+}
+
+.card:before {
+  content: '';
+  display: block;
+  padding-bottom: 150%;
+  width: 100%;
+}
+
+.card__background {
+
+
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+  border-radius: var(--spacing-l);
+  bottom: 0;
+  filter: brightness(0.75) saturate(1.2) contrast(0.85);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform-origin: center;
+  transform: scale(1) translateZ(0);
+  transition:
+    filter 200ms linear,
+    transform 200ms linear;
+}
+
+
+.card-grid {
+
+  display: flex;
+  flex-wrap: wrap;
+
+
+}
+
+
+
+.portfolio .grid__item:hover .card__background {
+  transform: scale(1.05) translateZ(0);
+}
+
+.card-grid:hover>.grid__item:not(:hover) .card__background {
+  filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+}
+
+.card__content {
+  left: 0;
+  padding: var(--spacing-l);
+  position: absolute;
+  top: 0;
+}
+
+.card__category {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-s);
+  text-transform: uppercase;
+}
+
+.card__heading {
+  color: var(--text-lighter);
+  font-size: 1.9rem;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  line-height: 1.4;
+  word-spacing: 100vw;
+}
+
+
+
+
+
+
+@media screen and (min-width:750px) {
+
+  section {
+    padding: 5.5em 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem;
+    z-index: 1;
+
+  }
+
+  .portfolio .grid__item {
+    max-width: 33.3333%;
+    max-width: 25%;
+  }
+
+
+}
+
+
+@media(max-width: 749px) {
+
+  section {
+    padding: 1em 0.5em;
+    z-index: 1;
+  }
+
+  .projets .grid__item {
+    padding: 0;
+
+
+  }
+
+  .card {
+    content: '';
+    display: block;
+
+    padding-bottom: calc(-170vh + var(--spacing-l));
+    width: calc(90vw);
+    height: calc(70vh);
+  }
+
+  .card__background {
+
+    height: calc(70vh - var(--spacing-l));
+    width: calc(90vw - var(--spacing-l));
+
+  }
+
+}

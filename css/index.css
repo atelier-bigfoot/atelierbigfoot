@@ -1,0 +1,54 @@
+:root {
+    --color-body: #333333;
+    --background-body: #F5F5F5;
+    --background-darker-body: #e5e5df;
+    --background-indesign-body: #f4ede7;
+    --bg-img: url(https://tylergaw.com/images/noise-tile-light.svg);
+    --gradient: linear-gradient(45deg, #e66465, #9198e5, #37ae9c, #4c826b);
+    --gradient2: radial-gradient(closest-side, #e85914, #F5f5f5), url(https://grainy-gradients.vercel.app/noise.svg);
+    --gradient3: linear-gradient(45deg, #e66465, #9198e500, #37ae9c, #f5f5f500), url(https://grainy-gradients.vercel.app/noise.svg);
+    --background-dark: #2d3548;
+    --text-light: rgba(255, 255, 255, 0.6);
+    --text-lighter: rgba(255, 255, 255, 0.9);
+    --spacing-s: 8px;
+    --spacing-m: 16px;
+    --spacing-l: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 64px;
+    --width-container: 1200px;
+  
+  }
+  
+
+/* .viewer {
+
+    padding: 1rem 2rem;
+    background-color: var(--background-indesign-body);
+    border-radius: 50px;
+    height: 100%;
+
+
+} */
+
+
+.fiche {
+  
+  margin:0;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+
+}
+
+.title { 
+  align-content: center;
+  align-self: center;
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+ 
+  /* border: 1px solid #000000; */
+  color: blue;
+ line-height: 0;
+}  
