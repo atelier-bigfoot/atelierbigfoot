@@ -84,7 +84,7 @@
   @media screen and (max-width:749px) {
     .text_wrapper h1{
       color: var(--background-body);
-      font-size: 5rem;
+      font-size: 3rem;
       line-height: 0;
       margin-bottom: 4rem;
     }
