@@ -454,11 +454,11 @@ footer {
     flex-wrap: wrap;
   }
 
-  footer .grid__item {
+  footer .footer__item {
     flex-grow: 1;
     flex-shrink: 0;
     width: 100%;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
   
 
@@ -489,13 +489,14 @@ footer {
     width: 42px;
     height: 42px;
     display: flex;
+    align-items: center;
     justify-content: center;
     transition: all .4s;
   }
   
   footer .socials a:hover {
-    background: var(--color-body);
-    color: var(--background-body);
+    color: #006eff
+    
   }
   
   
@@ -505,7 +506,7 @@ footer {
       text-align: left;
     }
   
-    footer .grid__item {
+    footer .footer__item {
       max-width: 33.333%;
     }
   }

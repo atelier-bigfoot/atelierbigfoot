@@ -98,7 +98,7 @@ a.down :hover{
   background-color: rgba(0, 0, 0, 0.89);
   width: 100%;
 
-  padding: 5rem 1rem;
+  padding: 1rem 1rem;
   text-align: justify;
 }
 
@@ -146,7 +146,6 @@ a.down :hover{
 
 .line img {
   margin-top: 1em;
-
   width: 100%;
   border-radius: var(--spacing-l);
 }
@@ -278,3 +277,33 @@ a.down :hover{
 }
 
 /* FICHE PROJET */
+
+/* LIEN EN BAS DE PAGE VERS #PORTFOLIO */
+
+.link {
+  display:flex;
+  flex-direction:column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .link .link_wrapper{
+  text-align: center;
+  width:fit-content;
+}
+
+.link_wrapper h1{
+  color: var(--background-body);
+  font-size: 10rem;
+}
+
+@media screen and (max-width:749px) {
+  .link_wrapper h1{
+    color: var(--background-body);
+    font-size: 2rem;
+    margin-bottom: 10rem;
+  }
+}
+
+/* LIEN EN BAS DE PAGE VERS #PORTFOLIO */
