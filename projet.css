@@ -83,7 +83,6 @@
   
   @media screen and (max-width:749px) {
     .text_wrapper h1{
-      color: red;
       font-size: 2rem;
       line-height: 0;
       margin-bottom: 4rem;
