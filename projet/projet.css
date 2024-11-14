@@ -1,23 +1,22 @@
-:root {
-    --color-body: #333333;
-    --background-body: #F5F5F5;
-    --background-darker-body: #e5e5df;
-    --background-indesign-body: #f4ede7;
-    --bg-img: url(https://tylergaw.com/images/noise-tile-light.svg);
-    --gradient: linear-gradient(45deg, #e66465, #9198e5, #37ae9c, #4c826b);
-    --gradient2: radial-gradient(closest-side, #e85914, #F5f5f5), url(https://grainy-gradients.vercel.app/noise.svg);
-    --gradient3: linear-gradient(45deg, #e66465, #9198e500, #37ae9c, #f5f5f500), url(https://grainy-gradients.vercel.app/noise.svg);
-    --background-dark: #2d3548;
-    --text-light: rgba(255, 255, 255, 0.6);
-    --text-lighter: rgba(255, 255, 255, 0.9);
-    --spacing-s: 8px;
-    --spacing-m: 16px;
-    --spacing-l: 24px;
-    --spacing-xl: 32px;
-    --spacing-xxl: 64px;
-    --width-container: 1200px;
+
+@import './css/stylesheet.css';
+
+/* :root {
+
+  --theme-color:#006eff;
+  --background-light: #f5f5f5;
+  --background-dark:  #000;
+  --text-dark: #333333;
+  --text-light: rgba(255, 255, 255, 0.9);
+  --sub-text: rgba(255, 255, 255, 0.6);
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 64px;
+  --width-container: 1200px;
   
-  }
+  } */
   
 
   .canvas {
@@ -52,7 +51,7 @@
   }
   
   .text_wrapper h1{
-    color: var(--background-body);
+    color: var(--text-light);
     font-size: 10rem;
     line-height: 0;
     margin-bottom: 5rem;
@@ -74,10 +73,7 @@
     width: 100px;
   }
   
-  a.down :hover{
-    color: #af2727;
-  
-  }
+
   
   
   
@@ -98,7 +94,7 @@
   
   .modal__content {
     
-    background-color: rgba(0, 0, 0, 0.89);
+    background-color: var(--background-dark);
     width: 100%;
   
     padding: 1rem 1rem;
@@ -121,14 +117,14 @@
       
   
     max-width: 100%;
-    background-color: rgba(0, 0, 0, 0.89);
+    background-color: var(--background-dark);
     justify-content: center;
     align-items: center;
   }
   
   
   .line {
-    border-top: 3px solid #fff;
+    border-top: 3px solid var(--background-light);
     padding: 20px 0px 20px 0px;
   }
   
@@ -159,14 +155,14 @@
     grid-template-rows: auto;
     width: 80%;
     margin: 50px auto;
-    color: #fff;
+    color: var(--text-light);
     
   }
   
   .title {
     font-size: 3em;
     line-height: 1em;
-    color: #fff;
+    color: var(--text-light);
   }
   
   .b ul {

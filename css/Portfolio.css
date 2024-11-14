@@ -1,19 +1,16 @@
+
 /* Base */
 
-:root {
-  --color-body: #333333;
-  --background-body: #F5F5F5;
-  --background-darker-body: #e5e5df;
-  --background-indesign-body: #f4ede7;
-  --bg-img: url(https://tylergaw.com/images/noise-tile-light.svg);
-  --gradient: linear-gradient(45deg, #e66465, #9198e5, #37ae9c, #4c826b);
-  --gradient2: radial-gradient(closest-side, #e85914, #F5f5f5), url(https://grainy-gradients.vercel.app/noise.svg);
+@import './stylesheet.css';
 
-  --gradient3: linear-gradient(45deg, #e66465, #9198e500, #37ae9c, #f5f5f500), url(https://grainy-gradients.vercel.app/noise.svg);
-
-  --background-dark: #2d3548;
-  --text-light: rgba(255, 255, 255, 0.6);
-  --text-lighter: rgba(255, 255, 255, 0.9);
+/* :root {
+  
+  --theme-color:#006eff;
+  --background-light: #f5f5f5;
+  --background-dark:  #000;
+  --text-dark: #333333;
+  --text-light: rgba(255, 255, 255, 0.9);
+  --sub-text: rgba(255, 255, 255, 0.6);
   --spacing-s: 8px;
   --spacing-m: 16px;
   --spacing-l: 24px;
@@ -21,7 +18,9 @@
   --spacing-xxl: 64px;
   --width-container: 1200px;
 
-}
+} */
+
+
 
 
 
@@ -29,7 +28,6 @@
 
 .container {
   padding: 1rem 2rem;
-  background-color: var(--background-indesign-body);
   border-radius: 50px;
 }
 
@@ -147,8 +145,8 @@
 
 
 .dropdown li:hover a {
-  background-color: var(--color-body);
-  color: var(--background-body);
+  background-color: var(--background-dark);
+  color: var(--text-light);
 }
 
 
@@ -192,7 +190,7 @@
   align-items: center;
   text-align: center;
 
-  border: 3px solid #F5F5F5;
+  border: 3px solid var(--background-light);
 
   overflow: hidden;
   border-radius: 100px;
@@ -202,8 +200,8 @@
 
 
 .dropdown a.active {
-  color: #FFF;
-  background: #006eff;
+  color:var(--text-light);
+  background: var(--theme-color);
 
 }
 
@@ -223,7 +221,7 @@
 }
 
 .portfolio .projets .container {
-  background-color: #000;
+  background-color: var(--background-dark);
 
 }
 
@@ -290,16 +288,16 @@
 }
 
 .card__category {
-  color: var(--text-light);
+  color: var(--sub-text);
   font-size: 0.9rem;
   margin-bottom: var(--spacing-s);
   text-transform: uppercase;
 }
 
 .card__heading {
-  color: var(--text-lighter);
+  color: var(--text-light);
   font-size: 1.9rem;
-  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  /* text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2); */
   line-height: 1.4;
   word-spacing: 100vw;
 }
@@ -325,7 +323,7 @@
 
   .portfolio .grid__item {
     max-width: 33.3333%;
-    max-width: 25%;
+    
   }
 
 
@@ -360,5 +358,11 @@
     width: calc(90vw - var(--spacing-l));
 
   }
+
+  .card-grid:hover>.grid__item:not(:hover) .card__background {
+    filter: none;
+  }
+
+
 
 }
