@@ -26,9 +26,14 @@
 
 /* PORTFOLIO */
 
+.portfolio{
+  padding-top: 0;
+}
+
 .container {
   padding: 1rem 2rem;
-  border-radius: 50px;
+  /* border-radius: 50px; */
+  
 }
 
 .grid {
@@ -55,18 +60,20 @@
   --varheightfilter: 3em;
   --varwidthfilter: 15em;
   list-style-type: none;
-  display: block;
+  /* display: block; */
+  display:flex;
   height: auto;
   position: sticky;
   z-index: 2;
   top: 10vh;
+  margin-inline: 10em;
 
 }
 
 .dropdown li {
   height: var(--varheightfilter);
   width: var(--varwidthfilter);
-  visibility: hidden;
+  /* visibility: hidden; */
   position: relative;
   z-index: 0;
   margin: auto;
@@ -75,8 +82,7 @@
 }
 
 .dropdown li a {
-
-
+  
   line-height: 2.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -90,7 +96,7 @@
   transition: 500ms;
 }
 
-.dropdown li:nth-child(2) a {
+/* .dropdown li:nth-child(2) a {
   opacity: 0;
   transform: translateY(calc(-1 * var(--varheightfilter)));
 
@@ -109,16 +115,19 @@
   transform: translateY(calc(-3 * var(--varheightfilter)));
 
 
-}
+} */
 
 .dropdown li a:active {
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
+  
+
   background-color: var(--color-body);
 
 }
 
 
 .dropdown li a.active {
+  font-weight: 700;
   visibility: visible;
   z-index: 4;
   opacity: 1;
@@ -143,11 +152,31 @@
 
 
 
-
 .dropdown li:hover a {
   background-color: var(--background-dark);
   color: var(--text-light);
 }
+
+@media(max-width: 749px) {
+
+  .dropdown {
+    padding: 0;
+    --varpaddingfilter: 0.1em;
+    --varheightfilter: 3em;
+    --varwidthfilter: 15em;
+    /* margin-top: 0; */
+    top: 10vh;
+    margin-inline: 1em;
+  
+  }
+
+}
+
+
+/* PORFOLIO */
+
+
+
 
 
 .portfolio .grid__item {
@@ -178,7 +207,6 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  border-radius: 100px;
 
 }
 
@@ -247,7 +275,7 @@
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  border-radius: var(--spacing-l);
+  /* border-radius: var(--spacing-l); */
   bottom: 0;
   filter: brightness(0.75) saturate(1.2) contrast(0.85);
   left: 0;
@@ -273,11 +301,13 @@
 
 
 .portfolio .grid__item:hover .card__background {
-  transform: scale(1.05) translateZ(0);
+  transform: scale(1.02) translateZ(0);
+  /* transform: scale(1.05) translateZ(0); */
 }
 
 .card-grid:hover>.grid__item:not(:hover) .card__background {
-  filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+  filter: brightness(0.5) saturate(0) contrast(1.2) blur(10px);
+  /* filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px); */
 }
 
 .card__content {
@@ -314,7 +344,7 @@
   }
 
   .container {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 5rem;
     z-index: 1;

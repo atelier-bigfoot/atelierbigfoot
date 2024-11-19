@@ -126,6 +126,7 @@
   .line {
     border-top: 3px solid var(--background-light);
     padding: 20px 0px 20px 0px;
+    /* font-size: 0.8em; */
   }
   
   .c {

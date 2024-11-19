@@ -1,5 +1,4 @@
 
-
 :root {
 
     --theme-color:#006eff;
@@ -17,6 +16,20 @@
   
   }
   
+
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+    /*
+    font-family: "Space Grotesk", sans-serif;
+    // <weight>: Use a value from 300 to 700 */
+
+  @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+  /* 
+  font-family: "Epilogue", sans-serif;
+  // <weight>: Use a value from 100 to 900 */
+
+  
+  
+
 
   * {
     box-sizing: border-box;
@@ -44,8 +57,11 @@
   }
   
   body {
-    font-family: 'Epilogue', serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.6rem;
+    font-optical-sizing: auto;
+    /* font-weight: 100; */
+    font-style: normal;
     line-height: 1.6;
     color: var(--text-dark);
     margin: 0;
@@ -53,6 +69,16 @@
   
     background-color: var(--background-dark);
   
+  }
+
+  @media screen and (max-width:749px) {
+    body {
+      
+      font-size: 1rem;
+      
+    
+    }
+
   }
   
   /* CURSOR-- */
