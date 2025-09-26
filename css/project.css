@@ -89,7 +89,7 @@
 
 .slide_title {
   height: inherit;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .togglebox .canvas {
