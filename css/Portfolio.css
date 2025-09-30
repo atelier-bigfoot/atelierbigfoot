@@ -156,12 +156,12 @@ filter-scroll {
 
 .filter-button:hover {
   background-color: var(--content);
-  color: var(--theme-color);
+  color: var(--background);
 }
 
 .filter-button.active {
   background-color: var(--theme-color);
-  color: var(--content);
+  color: var(--background);
   animation: fadein 0.5s ease forwards;
 }
 

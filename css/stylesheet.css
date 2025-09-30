@@ -45,6 +45,7 @@ body {
   margin: 0;
   height: 100%;
   background-color: var(--background);
+ 
 }
 
 @media screen and (max-width: 749px) {
@@ -52,6 +53,9 @@ body {
     font-size: 1rem;
   }
 }
+
+
+
 
 /* Header SVG */
 .oeil,
@@ -81,10 +85,10 @@ body {
     border-radius: 50%;
     pointer-events: none;
     z-index: 999;
-
-    background: white;
-    mix-blend-mode: difference;
+    backdrop-filter: invert(1) grayscale(1) brightness(2);
   }
+
+ 
 
   #cursor-border {
     --size: 50px;
@@ -225,6 +229,7 @@ body {
   }
 
   .header a {
+    /* text-transform: uppercase; */
     font-size: 2rem;
     font-weight: 500;
     color: var(--content);

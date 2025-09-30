@@ -23,7 +23,7 @@
   width: 80px;
   height: calc(100vh - 120px);
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 10px;
   border: solid var(--content) 2px;
   display: flex;
   transition: flex 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
