@@ -1,0 +1,335 @@
+/* =======================
+   Portfolio Grid
+======================= */
+.portfolio-grid {
+  display: grid;
+  grid-auto-rows: 600px;
+  gap: 30px;
+  max-width: 80vw;
+  width: 100%;
+  margin: auto;
+  padding-bottom: 80px;
+  min-height: calc(100vh - 182px);
+  
+  background-color: var(--background);
+}
+
+/* =======================
+   Project Card
+======================= */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, transform 0.3s;
+}
+
+/* .project-card.hidden {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+
+.project-card.showing {
+  opacity: 0;
+  visibility: visible;
+  height: auto;
+  transition: opacity 0.5s ease-in-out;
+} */
+
+/* =======================
+   Card Background
+======================= */
+.card_background {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  transition: transform 0.1s, filter 0.1s;
+}
+
+.card_background:hover {
+  filter: brightness(1.05) contrast(1.1);
+  transform: scale(1.0);
+}
+
+/* =======================
+   Card Info & Category
+======================= */
+.project-card .card_info {
+  background-color: var(--background);
+  width: 100%;
+  padding-top:5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 900;
+  color: var(--text-light);
+  font-size: 1.9rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+
+
+
+.project-card .category {
+  color: var(--sub-text);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  background-color: var(--background);
+  width: 100%;
+}
+
+/* =======================
+   Filter Carousel (Mobile)
+======================= */
+.filter-carousel {
+    position: sticky;
+  top: 10;
+  z-index:20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10vw; /* Responsive padding au lieu de max-width */
+  margin-bottom: 15px;
+  mask-image: linear-gradient(to right, var(--background), black 2%, black 98%, var(--background));
+  border-left: 2px solid var(--content);
+  border-right: 2px solid var(--content);
+  
+  /* background-color: var(--background); */
+
+}
+
+
+filter-scroll {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex-grow: 1;
+  display: flex;
+  /* mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); */
+}
+
+.filter-scroll-inner {
+  display: flex;
+  gap: 10px;
+  padding-left: 5vw;
+  position: relative;
+}
+
+/* Spacer at the end */
+.filter-scroll-inner::after {
+  content: "";
+  flex: 0 0 2vw; /* Acts as right padding */
+}
+
+.filter-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* =======================
+   Filter Buttons
+======================= */
+.filter-button {
+  white-space: nowrap;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 0px solid var(--content);
+  border-radius: 100px;
+  background-color: var(--background);
+  color: var(--content);
+  margin: 5px 0;
+  transition: background-color 0.2s ease-in-out;
+  flex-shrink: 0;
+  /* box-shadow:0px 1px 5px var(--content) ; */
+}
+
+.filter-button:hover {
+  background-color: var(--content);
+  color: var(--background);
+}
+
+.filter-button.active {
+  background-color: var(--theme-color);
+  color: var(--background);
+  animation: fadein 0.5s ease forwards;
+  /* box-shadow:0px 1px 5px var(--content) ; */
+}
+
+/* =======================
+   Animations
+======================= */
+@keyframes fadein {
+  from { background-color: var(--background); }
+  to { background-color: var(--theme-color); }
+}
+
+@keyframes card-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =======================
+   Responsive
+======================= */
+@media (max-width: 749px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 80vh;
+    overflow: hidden;
+ 
+  }
+
+  .project-card {
+    height: auto;
+    max-height: calc(75vh);
+  }
+
+  .filter-carousel {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    /* top: 70px; */
+    /* background-color: var(--background); */
+  }
+
+  .filter-scroll {
+    flex: 1;
+    overflow-x: auto;
+    padding: 5px 0;
+  }
+
+}
+
+@media (min-width: 750px) {
+  .filter-carousel {
+    flex-wrap: wrap;
+    border: none;
+  }
+
+ 
+
+  .filter-scroll {
+    flex-wrap: wrap;
+    overflow: visible;
+    justify-content: center;
+  }
+}
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-backgrounds {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.loader-backgrounds .bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.2); /* Start zoomed in */
+  transition: opacity 0.5s ease, transform 1.5s ease;
+}
+
+.loader-content {
+  width:80vw;
+  height: auto;
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.3s;
+  z-index: 2;
+}
+
+/* Add animation class dynamically */
+.loader-backgrounds .bg.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader-logo {
+  width:80vw;
+  height: auto;
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.3s;
+}
+#main-content {
+  opacity: 0;
+  /* transform: translateY(40px);
+  padding-top: 40px; */
+}
+
+.project-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+/* --- Hover image swap sur les cards --- */
+.project-card {
+  position: relative; /* sécurité pour l’empilement */
+  overflow: hidden;
+}
+
+.card_background {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  /* Optionnel mais utile pour une grille propre : fixe un ratio */
+  aspect-ratio: 4 / 3; /* ajuste si besoin */
+  will-change: opacity;
+}
+
+/* Calque hover invisible au départ */
+.card_background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--hover);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none; /* ne bloque pas le clic (onclick) */
+}
+
+/* Au survol, on révèle l’image hover */
+.project-card:hover .card_background::after {
+  opacity: 1;
+}
+

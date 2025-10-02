@@ -1,0 +1,475 @@
+@import './css/stylesheet.css';
+
+#file-select {
+  display: none;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  background-color: var(--background);
+  height: fit-content;
+  padding: 0 5px;
+  max-height: calc(100vh - 180px);
+  z-index: 0;
+}
+
+.togglebox {
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 80px;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+  border-radius: 10px;
+  border: solid var(--content) 2px;
+  /* border-left: solid var(--content) 1px; */
+  /* border-right: solid var(--content) 1px; */
+  display: flex;
+  transition: flex 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  filter: brightness(90%);
+}
+
+#slide_content {
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.8s linear;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  align-items: center;
+}
+
+#slide_content::-webkit-scrollbar {
+  display: none;
+}
+
+.togglebox.active #slide_content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.togglebox.active {
+  flex-grow: 1000;
+  transform: scale(1) translateX(0);
+  filter: none;
+  overflow: hidden;
+}
+
+.togglebox p {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.togglebox.active p {
+  visibility: visible;
+  opacity: 1;
+  animation: 2s ease 0s forwards fadein;
+}
+
+@keyframes fadein {
+  0%, 33% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.img_wrapper {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  align-items: center;
+  align-content: center;
+  left: 0;
+}
+
+.img_wrapper img {
+  height: 90vh;
+  align-content: center;
+}
+
+.slide_title {
+  height: inherit;
+  /* position: absolute; */
+  /* width: 0; */
+ 
+}
+
+.togglebox .canvas {
+  visibility: hidden;
+  opacity: 0;
+  /* z-index: -99; */
+  display: flex;              /* center contents */
+  justify-content: center;
+  align-items: center;
+  width: 100%;                /* take full slide width */
+  height: calc(100vh - 120px); /* or another height that fits your layout */
+  overflow: hidden;
+  position: relative;
+}
+
+.togglebox.active .canvas {
+  visibility: visible;
+  opacity: 1;
+  animation: 2s ease 0s forwards fadein;
+  
+
+}
+
+/* Responsive Layouts */
+
+@media screen and (min-width: 749px) {
+  .slide_title h1 {
+    transform: translateY(40px);
+    transform-origin: 0;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-weight: 500;
+     color: blueviolet;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .slide {
+    width: 100%;
+    min-height: calc(100% - 80px);
+    flex-direction: column;
+  }
+
+  .togglebox {
+    width: inherit;
+    height: 60px;
+    display: grid;    
+    justify-content: center; 
+    align-items: center;
+  }
+
+
+  .slide_title h1 {
+    
+    font-weight: 500;
+    text-align: center;
+    transition: color 0.5s ease-out;
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .slide_title{
+    font-weight: 500;
+  }
+
+  .togglebox.active .slide_title {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+  }
+}
+
+
+  .togglebox.active {
+    justify-content:unset ;
+    align-items: unset; 
+  }
+
+
+
+
+
+
+/* Fiche Projet */
+
+.line {
+  border-top: 3px solid var(--content);
+  padding: 10px 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.c .p {
+  left: 0;
+  padding: 0;
+  margin: 0;
+  top: 0;
+}
+
+.a {
+  padding: 20px;
+}
+
+.line img {
+  width: 100%;
+  border-radius: var(--spacing-l);
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 50% 5% 50%;
+  width: 85%;
+  margin: 50px auto;
+  color: var(--content);
+}
+
+.title {
+  font-size: 3em;
+  color: var(--content);
+}
+
+.b ul {
+  list-style: none;
+  line-height: 100%;
+  margin: 0;
+  padding-left: 0;
+}
+
+/* Fix info_title overlap (keep original font sizes) */
+.info_title {
+  line-height: 1.3;          /* restore natural spacing */
+  display: grid;             /* stack inline text + <h1> safely */
+  gap: 0.25rem;              /* small vertical space */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.info_title h1 {
+  font-size: 3em;            /* keep your original size */
+  font-weight: 600;
+  line-height: 1.1;          /* ensure heading doesn't crash into siblings */
+  margin: 0;
+}
+
+.info_title br {
+  display: none;             /* optional: hide <br> to avoid big gaps */
+}
+
+
+
+/* base — mobile/default stays single column */
+.f .text_grid {
+  column-count: 1;
+  column-gap: 2rem;
+  column-fill: balance;
+}
+
+/* desktop only — reuse your existing breakpoint */
+@media only screen and (min-width: 750px) {
+  .f .text_grid {
+    column-count: 2;
+    column-gap: 2.2rem; /* tweak as you like */
+  }
+  .f .text_grid p {
+    break-inside: avoid;     /* avoid awkward splits */
+    margin: 0 0 1rem 0;      /* tidy spacing between paragraphs */
+    hyphens: none;           /* nicer rag; needs <html lang="fr"> */
+    overflow-wrap: anywhere; /* prevent overflow on long words */
+  }
+}
+
+
+@media only screen and (max-width: 749px) {
+  .wrapper {
+    grid-template-columns: auto;
+  }
+
+  .a { grid-row: 1 / 2; }
+  .b { grid-column: 1 / 2; grid-row: 2 / 3; }
+  .c { grid-row: 3 / 4; }
+  .d { grid-row: 4 / 5; }
+  .e { grid-row: 5 / 6; }
+  .f { grid-column: 1 / 2; grid-row: 6 / 7; }
+  .g { grid-column: 1 / 2; grid-row: 8 / 9; }
+  .h { grid-column: 1 / 2; grid-row: 9 / 10; }
+}
+
+@media only screen and (min-width: 750px) {
+  .wrapper {
+    grid-template-columns: 50% 5% 50%;
+  }
+
+  .a { grid-column: 1 / 2; grid-row: 1 / 2; }
+  .b { grid-column: 3 / 4; grid-row: 1 / 2; }
+  .c {
+    font-weight: bold;
+    font-size: 1.7em;
+    line-height: 10%;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  .d {
+    font-weight: bold;
+    font-size: 1.7em;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+  .e {
+    font-weight: bold;
+    font-size: 1.7em;
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+  .f { grid-column: 3 / 4; grid-row: 2 / 3; }
+  .g { grid-column: 3 / 4; grid-row: 3 / 4; }
+  .h { grid-column: 3 / 4; grid-row: 4 / 5; }
+}
+
+/* Footer */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Carousel */
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 30px auto;
+  position: relative;
+  gap: 10px;
+}
+
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+  max-height: 80vh;
+  gap: 10px;
+}
+
+.carousel-track img {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  color: var(--content);
+  z-index: 2;
+  transition: all 0.2s ease-in-out;
+}
+
+.carousel-btn svg {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.prev:hover {
+  transform: translateX(-5px);
+}
+
+.next:hover {
+  transform: translateX(5px);
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+@media screen and (max-width: 749px) {
+  .carousel-wrapper {
+    width: 95%;
+  }
+}
+
+/* Gallery */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  width: 80%;
+  margin: 0 auto 50px auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: filter 0.3s ease-in-out;
+}
+
+.gallery img:hover {
+  filter: blur(0px) grayscale(0) opacity(90%);
+}
+
+/* Fullscreen Modal */
+
+#fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 998;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#fullscreen-modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#fullscreen-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  transition: opacity 2s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  font-size: 5rem;
+  color: white;
+  z-index: 1000;
+}
+
+/* Responsive tweaks */
+
+@media screen and (max-width: 749px) {
+  .carousel-container,
+  .gallery {
+    width: 95%;
+  }
+
+  .carousel img {
+    max-width: 250px;
+  }
+}
+
+#i3.active #slide_content {
+  visibility: visible;
+  opacity: 1;
+  animation: 2s ease 0s forwards fadein;
+}

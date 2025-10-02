@@ -1,0 +1,480 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Variables */
+:root {
+  --theme-color: #0019FF;
+  --background: #f1f1f1;
+  --content: rgb(17, 17, 17);
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 10px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 64px;
+  --width-container: 1200px;
+}
+
+/* Reset & base styles */
+* {
+  box-sizing: border-box;
+  cursor: none;
+  /* global cursor none */
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.4rem;
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--content);
+  margin: 0;
+  height: 100%;
+  background-color: var(--background);
+ 
+}
+
+@media screen and (max-width: 749px) {
+  body {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+/* Header SVG */
+.oeil,
+.iris,
+.pupille {
+  transform-origin: center;
+}
+
+/* #cursor {
+  position: fixed;
+  top: -5px;
+  left: -5px;
+  width: 15px;
+  height: 15px;
+  background-color: var(--content);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  } */
+
+  #cursor {
+    position: fixed;
+    top: -5px;
+    left: -5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    backdrop-filter: invert(1) grayscale(1) brightness(2);
+  }
+
+ 
+
+  #cursor-border {
+    --size: 50px;
+    position: fixed;
+    top: calc(var(--size) / -2);
+    left: calc(var(--size) / -2);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--background);
+    pointer-events: none;
+    transition: top 0.15s ease-out, left 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out, background-color 0.15s ease-out;
+    z-index: 999;
+    display: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+
+    #cursor,
+    #cursor-border {
+      display: none;
+    }
+  }
+
+  /* Buttons */
+  .btn {
+    pointer-events: auto;
+    cursor: pointer;
+    background: var(--background);
+    border: none;
+    padding: 1.5rem 3rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+  }
+
+  .btn::before,
+  .btn::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--content);
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .h1 {
+    font-size: 3.1rem;
+  }
+
+  .h2 {
+    font-size: 6rem;
+  }
+
+  .h3 {
+    font-size: 2.1rem;
+  }
+
+  h6 {
+    font-size: 2rem;
+  }
+
+  /* Links */
+  a {
+    color: var(--content);
+    text-decoration: none;
+    transition: all 0.5s ease-out;
+  }
+
+  a:hover {
+    color: var(--theme-color);
+  }
+
+  /* Lists */
+  ul {
+    padding-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  .list-unstyled {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Flex utilities */
+  .d-flex {
+    display: flex;
+    padding: 0 1em;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .d-flex {
+      align-items: center;
+    }
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(var(--background) 100%, transparent);
+    /* height: 70px; */
+    width: 100%;
+    color: var(--content);
+    top: 0;
+    z-index: 9;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .header .logo text {
+    /* font-size: 4rem; */
+    text-align: center;
+    letter-spacing: 0;
+  }
+
+  .header li {
+    display: inline;
+    padding: 0 2rem;
+    width: auto;
+  }
+
+  .header a {
+    /* text-transform: uppercase; */
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--content);
+    display: inline-block;
+    position: relative;
+    transition: all 0.5s ease-out;
+  }
+
+  .header a:hover {
+    color: var(--theme-color);
+  }
+
+  .navbar a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0.1em;
+    bottom: 0;
+    left: 0;
+    background: currentColor;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease-out;
+  }
+
+  .navbar a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    color: var(--theme-color);
+  }
+
+  .header .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  /* Socials */
+  .socials {
+    display: flex;
+  }
+
+  .socials li {
+    margin-bottom: 0;
+  }
+
+  .socials a {
+    padding: 0 2px;
+  }
+
+  .socials .icon {
+    height: 18px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .header .logo text {
+      font-size: 1.5em;
+      margin-left: 1em;
+    }
+
+    .header .socials {
+      display: none;
+    }
+  }
+
+  /* Burger menu */
+  .burger {
+    background: none;
+    border: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 1rem;
+    z-index: 10;
+  }
+
+  .burger .bar {
+    display: block;
+    width: 22px;
+    height: 3px;
+    background: var(--background);
+    position: relative;
+  }
+
+  .burger .bar::before,
+  .burger .bar::after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 3px;
+    background: var(--content);
+    position: absolute;
+    left: 0;
+  }
+
+  .burger .bar::before {
+    transform: translateY(-8px);
+  }
+
+  .burger .bar::after {
+    transform: translateY(8px);
+  }
+
+  @media screen and (max-width: 1139px) {
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: fixed;
+      top: 5px;
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+      background: var(--background);
+      left: 0;
+      right: 0;
+    }
+
+    nav .menu li {
+      display: flex;
+      justify-content: center;
+    }
+
+    nav .menu a {
+      display: block;
+      font-size: 2rem;
+      padding: 2rem;
+      transition: all 0.4s;
+    }
+
+    .show-nav nav {
+      opacity: 1;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      z-index: 10;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    .show-nav nav li a:hover {
+      transform: scale(1.1);
+      text-decoration: none;
+    }
+
+    .show-nav .burger .bar {
+      width: 0;
+    }
+
+    .burger .bar::before,
+    .burger .bar::after {
+      transition: all 0.2s ease-out;
+    }
+
+    .show-nav .burger .bar::before {
+      transform: rotate(-45deg);
+    }
+
+    .show-nav .burger .bar::after {
+      transform: rotate(45deg);
+    }
+
+    .navbar {
+      display: flex;
+    }
+  }
+
+  @media screen and (min-width: 1139px) {
+    .navbar {
+      display: flex;
+    }
+
+    .burger {
+      display: none;
+    }
+  }
+
+  /* Footer */
+  footer {
+    color: var(--content);
+    text-align: center;
+    font-size: 1.4rem;
+    width: 100%;
+  }
+
+  footer .grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-around;
+  }
+
+  footer .footer__item {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 100%;
+  }
+
+  footer p {
+    margin: 0;
+    text-align: center;
+  }
+
+  footer .socials {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  footer .socials li {
+    padding: 0 0.7rem;
+  }
+
+  footer .socials a {
+    color: var(--content);
+    border-radius: 50%;
+    padding: 1rem;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s;
+    border: none;
+  }
+
+  footer .socials a:hover {
+    color: var(--theme-color);
+  }
+
+  @media screen and (min-width: 750px) {
+    footer {
+      text-align: left;
+    }
+
+    footer .footer__item {
+      max-width: 33.333%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    footer {
+      text-align: left;
+      display: none;
+    }
+  }
