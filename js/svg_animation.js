@@ -14,35 +14,37 @@ function getElementCenter(el) {
     };
 }
 
-document.addEventListener('mousemove', (e) => {
-    const svgRect = svg.getBoundingClientRect();
-    const mouseX = e.clientX - window.innerWidth / 2;
-    const mouseY = e.clientY - window.innerHeight / 2;
+if (svg && oeilG && oeilD && irisG && irisD && pupilleG && pupilleD) {
+    document.addEventListener('mousemove', (e) => {
+        const svgRect = svg.getBoundingClientRect();
+        const mouseX = e.clientX - window.innerWidth / 2;
+        const mouseY = e.clientY - window.innerHeight / 2;
 
-    const oeilGCenter = getElementCenter(oeilG);
-    const oeilDCenter = getElementCenter(oeilD);
+        const oeilGCenter = getElementCenter(oeilG);
+        const oeilDCenter = getElementCenter(oeilD);
 
-    function followMouseProportional(element, centerX, centerY, maxDistance) {
-        const elCenterX = centerX - svgRect.left;
-        const elCenterY = centerY - svgRect.top;
+        function followMouseProportional(element, centerX, centerY, maxDistance) {
+            const elCenterX = centerX - svgRect.left;
+            const elCenterY = centerY - svgRect.top;
 
-        const dx = mouseX;
-        const dy = mouseY;
-        const angle = Math.atan2(dy, dx);
-        const distance = Math.min(Math.sqrt(dx * dx + dy * dy), maxDistance);
+            const dx = mouseX;
+            const dy = mouseY;
+            const angle = Math.atan2(dy, dx);
+            const distance = Math.min(Math.sqrt(dx * dx + dy * dy), maxDistance);
 
-        const translateX = distance * Math.cos(angle);
-        const translateY = distance * Math.sin(angle);
+            const translateX = distance * Math.cos(angle);
+            const translateY = distance * Math.sin(angle);
 
-        element.setAttribute('transform', `translate(${translateX} ${translateY})`);
-    }
+            element.setAttribute('transform', `translate(${translateX} ${translateY})`);
+        }
 
-    const maxDistanceIris = svgRect.width * 0.3;
-    const maxDistancePupille = svgRect.width * 0.45;
+        const maxDistanceIris = svgRect.width * 0.3;
+        const maxDistancePupille = svgRect.width * 0.45;
 
-    followMouseProportional(irisG, oeilGCenter.x, oeilGCenter.y, maxDistanceIris);
-    followMouseProportional(irisD, oeilDCenter.x, oeilDCenter.y, maxDistanceIris);
-    followMouseProportional(pupilleG, oeilGCenter.x, oeilGCenter.y, maxDistancePupille);
-    followMouseProportional(pupilleD, oeilDCenter.x, oeilDCenter.y, maxDistancePupille);
-});
+        followMouseProportional(irisG, oeilGCenter.x, oeilGCenter.y, maxDistanceIris);
+        followMouseProportional(irisD, oeilDCenter.x, oeilDCenter.y, maxDistanceIris);
+        followMouseProportional(pupilleG, oeilGCenter.x, oeilGCenter.y, maxDistancePupille);
+        followMouseProportional(pupilleD, oeilDCenter.x, oeilDCenter.y, maxDistancePupille);
+    });
+}
 

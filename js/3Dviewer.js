@@ -1,187 +1,263 @@
-// 3Dviewer_3dm_preload.js
-// 3DM viewer that preloads .3dm files to memory for instant display.
-// Keeps your original canvas sizing + ambient/directional light behavior.
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Rhino3dmLoader } from 'three/examples/jsm/loaders/3DMLoader';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ====== CONFIG: edit to your files ======
-  const PRELOAD_URLS = [
-    './assets/modelA.3dm',
-    // './assets/modelB.3dm',
-  ];
-  // If you also drive the file through a <select id="file-select">, it’ll use that value too.
-
-  // ====== DOM ======
   const container = document.getElementById('canvas');
-  const selectEl = document.getElementById('file-select'); // optional
+  const fileEl = document.getElementById('file-select');
+  const panel = container ? container.closest('.togglebox') : null;
 
-  // ====== THREE CORE ======
-  let scene, camera, renderer, controls, dirLight, currentRoot;
+  if (!container) {
+    console.error('[3Dviewer_3dm] No #canvas container found.');
+    return;
+  }
 
-  // ====== LOADER + IN-MEMORY CACHE ======
+  let scene;
+  let camera;
+  let renderer;
+  let controls;
+  let dirLight;
+  let currentRoot = null;
+  let statusEl;
+
   const loader = new Rhino3dmLoader();
   loader.setLibraryPath('https://unpkg.com/rhino3dm@8.4.0/');
 
-  // Cache: url -> Promise<THREE.Object3D>
-  const modelCache = new Map();
+  initUi();
+  initThree();
+  loadModel();
 
-  // Public: get a *cloned* scene graph from cache (preloaded or on-demand)
-  async function getModel(url) {
-    const base = new URL(url, window.location.href).href;
-    let p = modelCache.get(base);
-    if (!p) {
-      p = fetch(base)
-        .then(r => {
-          if (!r.ok) throw new Error(`HTTP ${r.status} for ${base}`);
-          return r.arrayBuffer();
-        })
-        .then(buf => new Promise((resolve, reject) => {
-          loader.parse(buf,
-            // onLoad
-            (obj) => resolve(obj),
-            // onError
-            (err) => reject(err)
-          );
-        }));
-      modelCache.set(base, p);
-    }
-    const original = await p;
-    // clone deep so we can add/remove independently
-    return original.clone(true);
+  if (fileEl) {
+    fileEl.addEventListener('change', () => {
+      loadModel();
+    });
   }
 
-  // Kick off preloads ASAP
-  for (const url of PRELOAD_URLS) {
-    getModel(url).catch(err => console.warn('[3DM preload] failed:', url, err));
+  function initUi() {
+    const ui = document.createElement('div');
+    ui.className = 'canvas-ui';
+    ui.innerHTML = `
+      <button type="button" class="canvas-ui__btn" data-action="fit">Ajuster la vue</button>
+      <span class="canvas-ui__hint">Cliquer-glisser pour tourner, molette pour zoom</span>
+    `;
+    container.appendChild(ui);
+
+    statusEl = document.createElement('div');
+    statusEl.className = 'canvas-status';
+    container.appendChild(statusEl);
+
+    const fitButton = ui.querySelector('[data-action="fit"]');
+    fitButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (currentRoot) frameObject(currentRoot);
+    });
+
+    const stopToggle = (event) => event.stopPropagation();
+    ['click', 'dblclick', 'pointerdown', 'pointerup', 'touchstart', 'wheel'].forEach((type) => {
+      container.addEventListener(type, stopToggle);
+    });
   }
 
-  // If <select> exists, also preload its default selection
-  if (selectEl && selectEl.value) {
-    getModel(selectEl.value).catch(err => console.warn('[3DM preload] failed:', selectEl.value, err));
-  }
-
-  // ====== INIT VIEWER (same sizing/behavior as your first script) ======
-  init();
-  loadModel(); // show default immediately (from cache if already ready)
-
-  if (selectEl) selectEl.addEventListener('change', loadModel);
-
-  function init() {
+  function initThree() {
     THREE.Object3D.DEFAULT_UP.set(0, 0, 1);
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(getCssVar('--background') || '#000');
+    scene.background = null;
 
-    camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 100, 0);
+    const { width, height } = getContainerSize();
 
-    const amb = new THREE.AmbientLight(0xffffff, 1.0);
-    scene.add(amb);
+    camera = new THREE.PerspectiveCamera(24, width / height, 0.01, 10000);
+    camera.position.set(-100, 0, 20);
+    camera.up.set(0, 0, 1);
 
-    dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+    dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
     scene.add(dirLight);
 
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0);
+    renderer.setClearAlpha(0);
+    renderer.domElement.style.background = 'transparent';
     container.appendChild(renderer.domElement);
 
+    const stopToggle = (event) => event.stopPropagation();
+    ['click', 'dblclick', 'pointerdown', 'pointerup', 'touchstart', 'wheel'].forEach((type) => {
+      renderer.domElement.addEventListener(type, stopToggle);
+    });
+
     controls = new OrbitControls(camera, renderer.domElement);
-    controls.addEventListener('change', () => dirLight.position.copy(camera.position));
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 0.01;
+    controls.maxDistance = 1e9;
+    controls.screenSpacePanning = true;
+    controls.addEventListener('change', () => {
+      dirLight.position.copy(camera.position);
+    });
     dirLight.position.copy(camera.position);
 
-    window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener('resize', handleResize, false);
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(() => {
+        handleResize();
+      });
+      ro.observe(container);
+    }
+
+    if (panel && typeof MutationObserver !== 'undefined') {
+      const mo = new MutationObserver(() => {
+        if (panel.classList.contains('active')) {
+          handleResize();
+          if (currentRoot) frameObject(currentRoot);
+        }
+      });
+      mo.observe(panel, { attributes: true, attributeFilter: ['class'] });
+    }
 
     animate();
   }
 
-  async function loadModel() {
-    const src =
-      (selectEl
-        ? (selectEl.tagName === 'OPTION' ? selectEl.value : selectEl.value)
-        : null) || PRELOAD_URLS[0] || './assets/modelA.3dm';
+  function getModelSrc() {
+    if (!fileEl) return './3D_projet.3dm';
+    return fileEl.value || './3D_projet.3dm';
+  }
 
-    // Dispose old
+  function loadModel() {
+    const src = getModelSrc();
+    showStatus('Chargement de la scene 3D...');
+
     if (currentRoot) {
       scene.remove(currentRoot);
       disposeRecursive(currentRoot);
       currentRoot = null;
     }
 
-    // Get from memory (or fetch+parse once)
-    try {
-      const root = await getModel(src);
-      currentRoot = root;
+    loader.load(
+      src,
+      (object) => {
+        currentRoot = object;
 
-      // Optional: best-effort Rhino material → Standard material
-      currentRoot.traverse((child) => {
-        if (!child.isMesh) return;
-        child.material = rhinoToStandard(child) || child.material || new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.8, metalness: 0.1 });
-      });
+        currentRoot.traverse((child) => {
+          if (!child.isMesh) return;
+          child.material = rhinoToStandard(child) || child.material || new THREE.MeshStandardMaterial({
+            color: 0x888888,
+            roughness: 0.8,
+            metalness: 0.1,
+          });
+        });
 
-      scene.add(root);
-      frameObject(root);
-    } catch (err) {
-      console.error('[3DM] load failed:', err);
-    }
+        scene.add(currentRoot);
+        frameObject(currentRoot);
+        hideStatus();
+      },
+      undefined,
+      (error) => {
+        console.error('[3Dviewer_3dm] load error:', error);
+        showStatus('Echec du chargement du fichier 3D.', true);
+      }
+    );
   }
 
   function frameObject(object) {
     const box = new THREE.Box3().setFromObject(object);
-    const size = box.getSize(new THREE.Vector3()).length();
+    const sizeVector = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
-    if (!isFinite(size) || size === 0) return;
+    const size = sizeVector.length();
 
-    const fitDist = 0.5 * size / Math.tan((camera.fov * Math.PI) / 360);
-    const dir = new THREE.Vector3(1, 1, 0.6).normalize();
+    if (!isFinite(size) || size <= 0) return;
+
+    const fitDist = (0.5 * size) / Math.tan((camera.fov * Math.PI) / 360);
+    const dir = new THREE.Vector3(-1, 0, 0.24).normalize();
+
     camera.position.copy(center).addScaledVector(dir, fitDist);
-    camera.near = Math.max(size / 1000, 0.1);
-    camera.far = Math.max(size * 10, 2000);
+    camera.near = Math.max(size / 5000, 0.01);
+    camera.far = Math.max(size * 20, 1000);
     camera.updateProjectionMatrix();
 
     controls.target.copy(center);
+    controls.minDistance = Math.max(size * 0.005, 0.01);
+    controls.maxDistance = Math.max(size * 25, 1000);
     controls.update();
+
     dirLight.position.copy(camera.position);
   }
 
   function animate() {
     requestAnimationFrame(animate);
+    if (!isViewerVisible()) return;
+
+    controls.update();
     dirLight.position.copy(camera.position);
     renderer.render(scene, camera);
   }
 
-  function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  function isViewerVisible() {
+    if (!panel) return true;
+    return panel.classList.contains('active');
   }
 
-  // ====== Utils ======
+  function handleResize() {
+    const { width, height } = getContainerSize();
+    if (!width || !height) return;
+
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0);
+    renderer.setClearAlpha(0);
+    renderer.domElement.style.background = 'transparent';
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  }
+
+  function showStatus(message, isError = false) {
+    statusEl.textContent = message;
+    statusEl.classList.add('visible');
+    statusEl.classList.toggle('is-error', isError);
+  }
+
+  function hideStatus() {
+    statusEl.classList.remove('visible', 'is-error');
+    statusEl.textContent = '';
+  }
+
   function getCssVar(name) {
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return getComputedStyle(document.documentElement)
+      .getPropertyValue(name)
+      .trim();
+  }
+
+  function getContainerSize() {
+    let width = container.clientWidth;
+    let height = container.clientHeight;
+
+    if (!width || !height) {
+      width = window.innerWidth;
+      height = window.innerHeight;
+    }
+
+    return { width, height };
   }
 
   function disposeRecursive(root) {
-    root.traverse((o) => {
-      if (o.isMesh) {
-        o.geometry?.dispose();
-        const m = o.material;
-        if (Array.isArray(m)) m.forEach(disposeMaterial);
-        else disposeMaterial(m);
-      }
+    root.traverse((obj) => {
+      if (!obj.isMesh) return;
+      obj.geometry?.dispose();
+      const material = obj.material;
+      if (Array.isArray(material)) material.forEach(disposeMaterial);
+      else disposeMaterial(material);
     });
   }
 
-  function disposeMaterial(m) {
-    if (!m) return;
-    for (const k in m) {
-      const v = m[k];
-      if (v && v.isTexture) v.dispose();
+  function disposeMaterial(material) {
+    if (!material) return;
+    for (const key in material) {
+      const value = material[key];
+      if (value && value.isTexture) value.dispose();
     }
-    m.dispose?.();
+    material.dispose?.();
   }
 
   function rhinoToStandard(mesh) {
@@ -189,22 +265,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const rmat = attr?.material || attr?.renderMaterial || null;
     const draw = attr?.drawColor;
 
-    let color = new THREE.Color(0x888888);
+    const color = new THREE.Color(0x888888);
     if (rmat?.diffuseColor) {
-      color.setRGB(rmat.diffuseColor.r/255, rmat.diffuseColor.g/255, rmat.diffuseColor.b/255);
+      color.setRGB(rmat.diffuseColor.r / 255, rmat.diffuseColor.g / 255, rmat.diffuseColor.b / 255);
     } else if (draw) {
-      color.setRGB(draw.r/255, draw.g/255, draw.b/255);
+      color.setRGB(draw.r / 255, draw.g / 255, draw.b / 255);
     }
 
-    const metalness = clamp01((rmat?.pbrMetallic ?? rmat?.shine ?? 0) / 255);
-    const roughness = clamp01(1 - metalness);
-    const opacity   = clamp01(1 - (rmat?.transparency ?? 0));
+    const metallic = clamp01((rmat?.pbrMetallic ?? rmat?.shine ?? 0) / 255);
+    const roughness = clamp01(1 - metallic);
+    const opacity = clamp01(1 - (rmat?.transparency ?? 0));
 
     return new THREE.MeshStandardMaterial({
-      color, metalness, roughness,
-      transparent: opacity < 1, opacity
+      color,
+      metalness: metallic,
+      roughness,
+      transparent: opacity < 1,
+      opacity,
     });
   }
 
-  function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+  function clamp01(value) {
+    return Math.max(0, Math.min(1, value));
+  }
 });

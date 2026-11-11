@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="fr" class="project-page project-template">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ESCALIER TOURELLE</title>
+
+  <meta name="description" content="Portfolio des projets">
+  <link rel="shortcut icon" href="../../assets/BIGFOOT_LOGO_YEUX.svg" type="image/x-icon">
+
+  <link rel="stylesheet" href="../../css/stylesheet.css">
+  <link rel="stylesheet" href="../../css/project.css?v=20260415">
+
+  <script src="../../js/Menu.js" defer></script>
+  <script src="../../js/cursor.js" defer></script>
+  <script src="../../js/slide.js?v=20260415" defer></script>
+  <script src="../../js/svg_animation.js" defer></script>
+  <script src="../../js/image.js?v=20260415" defer ></script>
+<link rel="preload" href="./3D_projet.glb" as="fetch" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+</head>
+
+<body onload="start()" class="project-page project-template">
+  <div id="cursor"></div>
+  <div id="cursor-border"></div>
+
+  <header class="header">
+  <div class="d-flex">
+    <div class="logo">
+        
+         <a href="../../index.html" data-cursor="pointer"><svg width="88" height="66" viewBox="0 0 1052 452" fill="none" xmlns="https://www.w3.org/2000/svg"
+          xmlns:xlink="https://www.w3.org/1999/xlink" id="svg_yeux">
+          <g clip-path="url(#clip_0_726)" data-name="Frame 5">
+              
+              <g transform="translate(0 0)" clip-path="url(#clip_1_126)" data-name="logo_bigfoot">
+                  <g id="oeil_g" class="oeil">
+                      <path
+                          d="M285.66 0C239.247 0 198.141 5.51219 162.447 16.0166C85.0217 38.8974 33.5092 85.387 11.8635 151.117C4.05856 174.518 0 200.415 0 228.496C0 370.149 103.025 452 285.66 452C468.296 452 570.592 370.253 570.592 228.496C570.592 86.7391 467.671 0 285.66 0Z"
+                          fill="var(--content)" data-name="oeil_g" />
+                      <path id="iris_g"
+                          d="M342.828 216.792C378.122 216.792 406.962 247.143 406.962 305.821C406.962 364.499 378.122 394.85 342.828 394.85C307.534 394.85 278.694 364.499 278.694 305.821C278.694 247.143 307.534 216.792 342.828 216.792Z"
+                          fill="var(--background)" data-name="iris_g" class="iris" />
+                      <path id="pupille_g"
+                          d="M342.828 267.832C364.92 267.832 377.352 285.74 377.352 307.832C377.352 329.923 364.92 347.832 342.828 347.832C320.736 347.832 308.304 329.923 308.304 307.832C308.304 285.74 320.736 267.832 342.828 267.832Z"
+                          fill="var(--content)" data-name="pupille_g" class="pupille" />
+                  </g>
+                  <g id="oeil_d" class="oeil" transform="translate(481.62 0)">
+                      <path
+                          d="M559.241 151.117C536.346 81.7469 480.359 33.6972 395.858 12.3764C363.493 4.26415 326.862 0 286.276 0C103.641 0 0.615997 85.387 0.615997 228.6C0.615997 371.813 103.641 452.104 286.276 452.104C468.912 452.104 571.104 370.357 571.104 228.6C571.104 200.519 567.045 174.518 559.241 151.221V151.117Z"
+                          fill="var(--content)" data-name="oeil_d" />
+                      <path id="iris_d"
+                          d="M343.444 216.792C378.738 216.792 407.578 247.143 407.578 305.821C407.578 364.499 378.738 394.85 343.444 394.85C308.15 394.85 279.31 364.499 279.31 305.821C279.31 247.143 308.15 216.792 343.444 216.792Z"
+                          fill="var(--background)" data-name="iris_d" class="iris" />
+                      <path id="pupille_d"
+                          d="M343.444 267.832C365.536 267.832 377.968 285.74 377.968 307.832C377.968 329.923 365.536 347.832 343.444 347.832C321.352 347.832 308.92 329.923 308.92 307.832C308.92 285.74 321.352 267.832 343.444 267.832Z"
+                          fill="var(--content)" data-name="pupille_d" class="pupille" />
+                  </g>
+              </g>
+          </g>
+          <defs>
+              <clipPath id="clip_0_726">
+                  <rect width="1196" height="1196" />
+              </clipPath>
+              <clipPath id="clip_1_126">
+                  <rect width="1052" height="452" />
+              </clipPath>
+          </defs>
+      </svg></a>
+      </div>
+    <nav class="navbar ">
+        <ul class="menu list-unstyled">
+          
+          <li><a class="nav-project" href="../../index.html" data-cursor="pointer">Projet</a></li>
+          <li><a class="nav-contact" href="../../contact/about.html" data-cursor="pointer">Contact</a></li>
+        </ul>
+      </nav>
+    <div class="right">
+        <ul class="socials list-unstyled">
+         
+          <li>
+            <a href="https://www.instagram.com/atelier_bigfoot/" data-cursor="pointer">in</a>
+          </li>
+        </ul>
+        <button class="burger"><span class="bar"></span></button>
+      </div>
+  </div>
+</header>
+
+  
+<!-- TEST SLIDE -->
+
+<div class="slide binder">
+  <div class="binder-nav">
+    <button class="binder-tab active" type="button" data-target="i1" data-cursor="pointer">INFO</button>
+    <button class="binder-tab" type="button" data-target="i2" data-cursor="pointer">3D</button>
+    <button class="binder-tab" type="button" data-target="i3" data-cursor="pointer">IMAGE</button>
+  </div>
+  <div class="binder-content">
+  <div id="i1" class="togglebox active">
+    <div class="grid__item" id="slide_content">
+    <div id="includedContent"></div>     
+      
+    </div>
+   
+
+  </div>
+  <div id="i2" class="togglebox">
+    <div class="canvas" id="canvas">
+      <select id="file-select" style="display:none">
+        <option value="./3D_projet.glb" selected>Default</option>
+      </select>
+          
+                    <script type="importmap">
+            {
+                  "imports": {
+                      "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+                      "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.158.0/examples/jsm/controls/OrbitControls.js",
+                      "three/examples/jsm/loaders/GLTFLoader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/GLTFLoader.js",
+                      "three/examples/jsm/loaders/KTX2Loader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/KTX2Loader.js",
+                      "three/examples/jsm/loaders/DRACOLoader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/DRACOLoader.js",
+                      "three/examples/jsm/libs/meshopt_decoder.module": "https://unpkg.com/three@0.158.0/examples/jsm/libs/meshopt_decoder.module.js",
+                      "three/examples/jsm/environments/RoomEnvironment": "https://unpkg.com/three@0.158.0/examples/jsm/environments/RoomEnvironment.js"                }
+              }
+          </script>
+          
+        <script type="module" src="../../js/3Dviewer_glb.js"></script>
+    
+  </div>
+  
+  </div>
+  <div id="i3" class="togglebox">
+    <div id="slide_content">
+      <div class="image-split">
+        <div class="image-split__hero">
+          <div class="image-hero-wrap">
+            <div class="carousel-wrapper">
+              <div class="carousel-container">
+                <div class="carousel-track" id="includedimage1"></div>
+              </div>
+            </div>
+            <div class="image-hero-controls">
+              <button class="carousel-btn prev"> <svg viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg" aria-hidden="true"><path d="M23 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7L5 12L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="carousel-counter">
+                <span class="carousel-count current">01</span>
+                <span class="carousel-sep" aria-hidden="true"></span>
+                <span class="carousel-count total">00</span>
+              </div>
+              <button class="carousel-btn next"> <svg viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 7L19 12L14 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="image-split__thumbs" style="display:none;">
+          <div class="gallery" id="includedimage2"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+
+    
+        <div id="fullscreen-modal" class="hidden">
+  <span class="close-btn">&times;</span>
+  <div class="modal-media">
+    <img id="fullscreen-img" src="" alt="Vue agrandie du projet">
+  </div>
+</div>
+
+  <footer>
+    <div>
+      <div class="grid">
+        <div class="footer__item">
+          <p>atelierbigfoot[at]gmail.com</p>
+        </div>
+        
+        <div class="footer__item">
+          <p>Copyright Â© 2025 Atelier Bigfoot. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
